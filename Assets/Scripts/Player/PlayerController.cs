@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     public void Move(float upDown, float rightLeft)
     {
-        rb.AddForce(new Vector3(rightLeft, 0, upDown) * _movementSpeed, ForceMode.Force);
+        rb.AddForce(new Vector3(rightLeft, 0, upDown), ForceMode.Force);
         playerAnimationController.SetAnimationMove(new Vector2(rightLeft, upDown));
     }
 
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(some);
             if (some == 1)
             {
-                firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority == 10 ? 9 : 10;
+                firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority == 11 ? 9 : 11;
                 yield return new WaitForSeconds(1f);
             }
             yield return new WaitForSeconds(0.1f);
@@ -103,6 +103,5 @@ public class PlayerController : MonoBehaviour
         Move(upDown, rightLeft);
         SetRotation();
         SetCameraRotation();
-        ChangeCameraMode();
     }
 }
