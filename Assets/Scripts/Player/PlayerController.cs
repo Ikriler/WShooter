@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private Stamina stamina;
 
     private GameObject firstPersonCamera;
-    private GameObject firspPresonCameraAnchor;
+    private GameObject cameraAnchor;
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         stamina = GetComponent<Stamina>();
 
         firstPersonCamera = GameObject.FindGameObjectWithTag("FirstPersonCamera");
-        firspPresonCameraAnchor = GameObject.FindGameObjectWithTag("FirstPersonCameraAnchor");
+        cameraAnchor = GameObject.FindGameObjectWithTag("FirstPersonCameraAnchor");
 
         StartCoroutine(ChangeCameraMode());
     }
@@ -76,11 +76,11 @@ public class PlayerController : MonoBehaviour
     public void SetCameraRotation()
     {
         Vector2 newPosition = playerInputActions.Player.Aim.ReadValue<Vector2>();
-        Vector3 position = firspPresonCameraAnchor.transform.position;
+        Vector3 position = cameraAnchor.transform.localPosition;
         position.y += newPosition.y;
         position.y = Mathf.Clamp(position.y, _maxCameraRotationDown, _maxCameraRotationUp);
-        position.y = Mathf.Lerp(firspPresonCameraAnchor.transform.position.y, position.y, _cameraSmoothRotation * Time.fixedDeltaTime);
-        firspPresonCameraAnchor.transform.position = position;
+        position.y = Mathf.Lerp(cameraAnchor.transform.localPosition.y, position.y, _cameraSmoothRotation * Time.fixedDeltaTime);
+        cameraAnchor.transform.localPosition = position;
     }
 
     public IEnumerator ChangeCameraMode()
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         sprintState = true;
         float state = playerInputActions.Player.Sprint.ReadValue<float>();
-        if(state == 1 && stamina._stamina >= 25 && (directionUpDown != 0 || directionRightLeft != 0))
+        if(state == 1 && stamina._stamina >= 25 && (directionUpDown != 0 || directionRightLeft != 0) && IsGround())
         {
             playerAnimationController.StartSprint(_sprintSpeed);
             stamina.StaminaDown(25);
