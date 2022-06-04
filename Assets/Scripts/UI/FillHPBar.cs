@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class FillHPBar : MonoBehaviour
 {
+    [SerializeField]
+    public float _healthSmooth = 0.9f;
+
     private GameObject HPBar;
     private Health playerHealth;
     private void Awake()
@@ -24,6 +27,6 @@ public class FillHPBar : MonoBehaviour
     {
         if (HPBar == null) return;
         if (playerHealth == null) return;
-        HPBar.GetComponent<Image>().fillAmount = playerHealth._health / playerHealth.GetMaxHealth();
+        HPBar.GetComponent<Image>().fillAmount = Mathf.Lerp(HPBar.GetComponent<Image>().fillAmount, playerHealth._health / playerHealth.GetMaxHealth(), _healthSmooth * Time.fixedDeltaTime);
     }
 }

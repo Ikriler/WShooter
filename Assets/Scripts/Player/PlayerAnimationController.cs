@@ -10,10 +10,12 @@ public class PlayerAnimationController : MonoBehaviour
     private Vector2 CurrentBlendVelocity;
 
     private Animator _Animator;
+    private float realSpeedAnimator;
 
     private void Awake()
     {
         _Animator = GetComponent<Animator>();
+        realSpeedAnimator = _Animator.speed;
     }
 
     public void SetAnimationMove(Vector2 InputVector)
@@ -21,5 +23,15 @@ public class PlayerAnimationController : MonoBehaviour
         CurrentMovementAnimationBlend = Vector2.SmoothDamp(CurrentMovementAnimationBlend, InputVector, ref CurrentBlendVelocity, AnimationSmoothTime * Time.deltaTime);
         _Animator.SetFloat("X", CurrentMovementAnimationBlend.x);
         _Animator.SetFloat("Z", CurrentMovementAnimationBlend.y);
+    }
+
+    public void StartSprint(float speed)
+    {
+        _Animator.speed = realSpeedAnimator * speed;
+    }
+    
+    public void StopSprint()
+    {
+        _Animator.speed = realSpeedAnimator;
     }
 }

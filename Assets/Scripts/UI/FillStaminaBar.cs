@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class FillStaminaBar : MonoBehaviour
 {
+    [SerializeField]
+    public float _staminaSmooth = 0.9f;
+
     private GameObject StaminaBar;
     private Stamina playerStamina;
+
     private void Awake()
     {
         StaminaBar = GameObject.FindGameObjectWithTag("StaminaBar");
@@ -24,6 +28,6 @@ public class FillStaminaBar : MonoBehaviour
     {
         if (StaminaBar == null) return;
         if (playerStamina == null) return;
-        StaminaBar.GetComponent<Image>().fillAmount = playerStamina._stamina / playerStamina.GetMaxStamina();
+        StaminaBar.GetComponent<Image>().fillAmount = Mathf.Lerp(StaminaBar.GetComponent<Image>().fillAmount, playerStamina._stamina / playerStamina.GetMaxStamina(), _staminaSmooth * Time.fixedDeltaTime);
     }
 }

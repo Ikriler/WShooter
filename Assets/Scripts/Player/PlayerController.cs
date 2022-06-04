@@ -20,11 +20,14 @@ public class PlayerController : MonoBehaviour
     public float _maxCameraRotationUp = 14;
     [SerializeField]
     public float _maxCameraRotationDown = -14;
-
+    [SerializeField]
+    public float _sprintSpeed = 1.5f;
+    
 
     private PlayerInputActions playerInputActions;
     private Rigidbody rb;
     private PlayerAnimationController playerAnimationController;
+    private Stamina stamina;
 
     private GameObject firstPersonCamera;
     private GameObject firspPresonCameraAnchor;
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Jump.performed += Jump;
 
         playerAnimationController = GetComponent<PlayerAnimationController>();
+        stamina = GetComponent<Stamina>();
 
         firstPersonCamera = GameObject.FindGameObjectWithTag("FirstPersonCamera");
         firspPresonCameraAnchor = GameObject.FindGameObjectWithTag("FirstPersonCameraAnchor");
@@ -93,6 +97,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool sprintState = false;
+    public IEnumerator Sprint(float directionUpDown, float directionRightLeft)
+    {
+        sprintState = true;
+        float state = playerInputActions.Player.Sprint.ReadValue<float>();
+        if(state == 1 && stamina._stamina >= 25 && (directionUpDown != 0 || directionRightLeft != 0))
+        {
+            playerAnimationController.StartSprint(_sprintSpeed);
+            stamina.StaminaDown(25);
+            yield return new WaitForSeconds(1);
+        }
+        else
+        {
+            playerAnimationController.StopSprint();
+        }
+        sprintState = false;
+    }
+
     private void FixedUpdate()
     {
         float upDown = playerInputActions.Player.UpDown.ReadValue<float>();
@@ -102,5 +124,6 @@ public class PlayerController : MonoBehaviour
         Move(upDown, rightLeft);
         SetRotation();
         SetCameraRotation();
+        if(!sprintState) StartCoroutine(Sprint(upDown, rightLeft));
     }
 }
