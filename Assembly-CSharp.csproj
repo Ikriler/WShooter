@@ -56,14 +56,15 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Pickup\MedKitPickup.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Components\Health.cs" />
-    <Compile Include="Assets\Scripts\UI\FillHPBar.cs" />
-    <Compile Include="Assets\Scripts\Pickup\MedKitPickup.cs" />
     <Compile Include="Assets\Scripts\Components\Stamina.cs" />
+    <Compile Include="Assets\Scripts\UI\FillHPBar.cs" />
+    <Compile Include="Assets\Scripts\Components\Health.cs" />
     <Compile Include="Assets\Scripts\UI\FillStaminaBar.cs" />
+    <Compile Include="Assets\Scripts\UI\FlashingHPBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

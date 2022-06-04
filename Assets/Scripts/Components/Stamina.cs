@@ -57,8 +57,11 @@ public class Stamina : MonoBehaviour
                 staminaTumble = false;
                 yield return new WaitForSeconds(1);
             }
-            StaminaUp(_staminaPerSecond);
-            yield return new WaitForSeconds(1);
+            else
+            {
+                StaminaUp(_staminaPerSecond);
+                yield return new WaitForSeconds(1);
+            }
         }
     }
 }

@@ -83,9 +83,8 @@ public class PlayerController : MonoBehaviour
     {
         while(true)
         {
-            float some = playerInputActions.Player.CameraSwitch.ReadValue<float>();
-            Debug.Log(some);
-            if (some == 1)
+            float state = playerInputActions.Player.CameraSwitch.ReadValue<float>();
+            if (state == 1)
             {
                 firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority == 11 ? 9 : 11;
                 yield return new WaitForSeconds(1f);
