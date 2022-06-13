@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public float _sprintSpeed = 1.5f;
     
 
-    private PlayerInputActions playerInputActions;
+    static public PlayerInputActions playerInputActions;
     private Rigidbody rb;
     private PlayerAnimationController playerAnimationController;
     private Stamina stamina;
@@ -32,8 +32,12 @@ public class PlayerController : MonoBehaviour
     private GameObject firstPersonCamera;
     private GameObject cameraAnchor;
 
+    public static PlayerController S;
+
     private void Awake()
     {
+        S = this;
+
         rb = GetComponent<Rigidbody>();
 
         playerInputActions = new PlayerInputActions();
