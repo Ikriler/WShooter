@@ -8,6 +8,7 @@ TagManager:
   - FirstPersonCameraAnchor
   - HPBar
   - StaminaBar
+  - Bullet
   layers:
   - Default
   - TransparentFX

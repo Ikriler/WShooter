@@ -56,20 +56,31 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Components\Ammo.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\UI\FlashingHPBar.cs" />
+    <Compile Include="Assets\Scripts\IKControll.cs" />
     <Compile Include="Assets\Scripts\Pickup\MedKitPickup.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
+    <Compile Include="Assets\Scripts\Components\Look.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Models\Artillery Tank\Demo Scene\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponController.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory.cs" />
     <Compile Include="Assets\Scripts\Components\Stamina.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Bullet.cs" />
     <Compile Include="Assets\Scripts\UI\FillHPBar.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorController.cs" />
     <Compile Include="Assets\Scripts\Components\Health.cs" />
     <Compile Include="Assets\Scripts\UI\FillStaminaBar.cs" />
     <Compile Include="Assets\Scripts\Enemy\PlayerFinder.cs" />
+    <Compile Include="Assets\Scripts\Components\IDeadble.cs" />
+    <Compile Include="Assets\Aligned Games\Polygonal Modern Weapons Asset Package\Scripts\Utility\FlyCameraBehaviour.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Aligned Games\Polygonal Modern Weapons Asset Package\Shaders\Diffuse.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

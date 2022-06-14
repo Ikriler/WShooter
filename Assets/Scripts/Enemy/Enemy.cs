@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
     private NavMeshAgent navMeshAgent;
     private PlayerFinder playerFinder;
     private EnemyAttack enemyAttack;
@@ -47,14 +48,19 @@ public class Enemy : MonoBehaviour
             Debug.Log(gameObject.name + ": enemyAttack not found.");
             return;
         }
+
+
+
         if (playerFinder.GetFindState() && Vector3.Distance(playerFinder.GetPostitionTarget(), transform.position) > 3f)
         {
             currentAnimationState = AnimationState.Move;
             navMeshAgent.SetDestination(playerFinder.GetPostitionTarget());
         }
-        else if(Vector3.Distance(navMeshAgent.destination, transform.position) > 0.1f && !playerFinder.GetFindState())
+        //else if(Vector3.Distance(navMeshAgent.destination, transform.position) > 0.1f && !playerFinder.GetFindState())
+        else if(navMeshAgent.transform.position == navMeshAgent.pathEndPosition)
         {
             currentAnimationState = AnimationState.Move;
+            navMeshAgent.SetDestination(GetRandomPoint());
         }
         else
         {
@@ -66,6 +72,11 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Attack());
         }
         SetAnimation();
+    }
+
+    private Vector3 GetRandomPoint()
+    {
+        return transform.position + Random.onUnitSphere * 2;
     }
 
     private IEnumerator Attack()

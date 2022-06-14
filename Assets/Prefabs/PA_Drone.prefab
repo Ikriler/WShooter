@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 435867060411565364}
   - component: {fileID: 435867060410795284}
   - component: {fileID: 435867060409796564}
+  - component: {fileID: 7722768479788537973}
   m_Layer: 0
   m_Name: PA_Drone
   m_TagString: Untagged
@@ -245,6 +246,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &7722768479788537973
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435867060412061972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6ffc6a95fc55320479ae08f9db3f5b4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &435867060412061974
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +281,8 @@ GameObject:
   - component: {fileID: 435867059809197943}
   - component: {fileID: 435867059809197940}
   - component: {fileID: 435867059809197941}
+  - component: {fileID: 7192542543035655901}
+  - component: {fileID: 1287737233005811289}
   m_Layer: 0
   m_Name: PA_Drone
   m_TagString: Untagged
@@ -343,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e081f46249e5cf34c9137058069158a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 0}
 --- !u!195 &435867059809197943
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -392,6 +415,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 5
   _attackRadius: 2
+--- !u!65 &7192542543035655901
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435867060412061974}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1287737233005811289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435867060412061974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8161da397d55674c866875e6fcc4a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &435867060412061980
 GameObject:
   m_ObjectHideFlags: 0
