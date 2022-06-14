@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
+    <Compile Include="Assets\Scripts\UI\FillAmmoBar.cs" />
     <Compile Include="Assets\Scripts\Components\Look.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Aligned Games\Polygonal Modern Weapons Asset Package\Scripts\Utility\FlyCameraBehaviour.cs" />
@@ -81,7 +82,7 @@
     <Compile Include="Assets\Scripts\UI\FillStaminaBar.cs" />
     <Compile Include="Assets\Scripts\Components\Barricade_Destroy.cs" />
     <Compile Include="Assets\Scripts\Enemy\PlayerFinder.cs" />
-    <Compile Include="Assets\Scripts\UI\FillAmmoBar.cs" />
+    <Compile Include="Assets\Scripts\Pickup\AmmoPickUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Aligned Games\Polygonal Modern Weapons Asset Package\Shaders\Diffuse.shader" />

@@ -55,6 +55,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public bool GunIsFull(int gunIndex)
+    {
+        Ammo chekedGunAmmo = weapons[gunIndex].GetComponent<Ammo>();
+        return chekedGunAmmo.GetCurrentAmmoCountInMagazine() == chekedGunAmmo._maxAmmoInMagazie && chekedGunAmmo.GetCurrentMaxAmmoCount() == chekedGunAmmo._maxAmmoCount;
+    }
+
     public void ReloadGun(int gunIndex)
     {
         weapons[gunIndex].GetComponent<Ammo>().FillAmmo();
