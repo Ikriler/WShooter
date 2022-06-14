@@ -5,41 +5,57 @@ using UnityEngine;
 public class Ammo : MonoBehaviour
 {
     [SerializeField]
-    public int _ammoCount;
+    public int _maxAmmoInMagazie;
+    [SerializeField]
+    public int _maxAmmoCount;
 
-    private int maxAmmoCount;
+    private int _curentAmmoInMagazine;
+    private int _currentMaxAmmo;
 
     private void Awake()
     {
-        maxAmmoCount = _ammoCount;
+        _curentAmmoInMagazine = _maxAmmoInMagazie;
+        _currentMaxAmmo = _maxAmmoCount;
     }
 
-    public void AmmoDown(int ammoCount)
+    public void AmmoDown(int i = 1)
     {
-        if (_ammoCount + ammoCount > maxAmmoCount)
+        if(_curentAmmoInMagazine != 0)
         {
-            _ammoCount = maxAmmoCount;
-        }
-        else
-        {
-            _ammoCount += ammoCount;
+            _curentAmmoInMagazine -= i;
         }
     }
 
-    public void AmmoUp(int ammoCount = 1)
+    public int GetCurrentAmmoCountInMagazine()
     {
-        if (_ammoCount - ammoCount < 0)
+        return _curentAmmoInMagazine;
+    }
+
+    public int GetCurrentMaxAmmoCount()
+    {
+        return _currentMaxAmmo;
+    }
+
+    public void Reload()
+    {
+        int needAmmo = _maxAmmoInMagazie - _curentAmmoInMagazine;
+        if (needAmmo > _currentMaxAmmo)
         {
-            _ammoCount = 0;
+            _curentAmmoInMagazine += _currentMaxAmmo;
+            _currentMaxAmmo = 0;
+            return;
         }
-        else
+        if(needAmmo <= _currentMaxAmmo)
         {
-            _ammoCount -= ammoCount;
+            _curentAmmoInMagazine += needAmmo;
+            _currentMaxAmmo -= needAmmo;
+            return;
         }
     }
 
-    public int GetMaxHealth()
+    public void FillAmmo()
     {
-        return maxAmmoCount;
+        _curentAmmoInMagazine = _maxAmmoInMagazie;
+        _currentMaxAmmo = _maxAmmoCount;
     }
 }

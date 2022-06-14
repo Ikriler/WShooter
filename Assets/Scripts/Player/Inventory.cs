@@ -54,4 +54,9 @@ public class Inventory : MonoBehaviour
             if(weapon != null) weapon.SetActive(false);
         }
     }
+
+    public void ReloadGun(int gunIndex)
+    {
+        weapons[gunIndex].GetComponent<Ammo>().FillAmmo();
+    }
 }
