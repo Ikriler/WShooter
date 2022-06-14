@@ -51,6 +51,7 @@ public class Rocket_Bullet : MonoBehaviour
     {
         exploded = true;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<SoundController>().AudioExplode();
         explode.Play();
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);

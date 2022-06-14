@@ -24,6 +24,10 @@ public class Health : MonoBehaviour
         {
             _health += healthCount;
         }
+        if(GetComponent<SoundController>() != null)
+        {
+            GetComponent<SoundController>().AudioReload();
+        }
     }
 
     public void HealthDown(float healthCount)

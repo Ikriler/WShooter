@@ -17,6 +17,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     public bool _gunIsInfinity = false;
 
+    public AudioSource _currentShootSound; 
+
     private PlayerInputActions inputActions;
     private Ammo _ammo;
 
@@ -43,6 +45,7 @@ public class WeaponController : MonoBehaviour
                 _ammo.AmmoDown();
                 GameObject bullet = Instantiate(_bulletPrefab);
                 bullet.transform.position = _bulletSpawnPoint.transform.position;
+                _currentShootSound.PlayOneShot(_currentShootSound.clip);
                 bullet.GetComponent<Rigidbody>().velocity = (_cameraAnhor.transform.position - _bulletSpawnPoint.transform.position) * _power;
             }
         }
@@ -55,5 +58,6 @@ public class WeaponController : MonoBehaviour
         {
             _ammo.FillAmmo();
         }
+        GetComponent<SoundController>().AudioReload();
     }
 }

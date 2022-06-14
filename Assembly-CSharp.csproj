@@ -74,6 +74,7 @@
     <Compile Include="Assets\Models\Artillery Tank\Demo Scene\CameraController.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponController.cs" />
     <Compile Include="Assets\Scripts\Player\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Pickup\AmmoPickUp.cs" />
     <Compile Include="Assets\Scripts\Components\Stamina.cs" />
     <Compile Include="Assets\Scripts\Weapon\Bullet.cs" />
     <Compile Include="Assets\Scripts\UI\FillHPBar.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="Assets\Scripts\UI\FillStaminaBar.cs" />
     <Compile Include="Assets\Scripts\Components\Barricade_Destroy.cs" />
     <Compile Include="Assets\Scripts\Enemy\PlayerFinder.cs" />
-    <Compile Include="Assets\Scripts\Pickup\AmmoPickUp.cs" />
+    <Compile Include="Assets\Scripts\Components\SoundController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Aligned Games\Polygonal Modern Weapons Asset Package\Shaders\Diffuse.shader" />

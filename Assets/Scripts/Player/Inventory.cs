@@ -64,5 +64,6 @@ public class Inventory : MonoBehaviour
     public void ReloadGun(int gunIndex)
     {
         weapons[gunIndex].GetComponent<Ammo>().FillAmmo();
+        GetComponent<SoundController>().AudioReload();
     }
 }

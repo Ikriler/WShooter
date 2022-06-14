@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.AddForce(new Vector3(rightLeft, 0, upDown), ForceMode.Force);
         playerAnimationController.SetAnimationMove(new Vector2(rightLeft, upDown));
+        GetComponent<SoundController>().AudioWalk();
     }
 
     public void SetRotation()
