@@ -17,7 +17,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         Health targetHealth = other.GetComponent<Health>();
         if (other.tag == "Bullet") return;
         if (other.tag == "Player") return;

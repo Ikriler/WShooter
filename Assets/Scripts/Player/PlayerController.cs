@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public float _maxCameraRotationDown = -14;
     [SerializeField]
     public float _sprintSpeed = 1.5f;
+    [SerializeField]
+    public float _crossingValue = 100f;
     
 
     static public PlayerInputActions playerInputActions;
@@ -30,12 +32,18 @@ public class PlayerController : MonoBehaviour
     private Stamina stamina;
 
     private GameObject firstPersonCamera;
+    private GameObject secondPersonCamera;
     private GameObject cameraAnchor;
+
+    private float startCrossingValue;
 
     public static PlayerController S;
 
     private void Awake()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         S = this;
 
         rb = GetComponent<Rigidbody>();
@@ -48,9 +56,26 @@ public class PlayerController : MonoBehaviour
         stamina = GetComponent<Stamina>();
 
         firstPersonCamera = GameObject.FindGameObjectWithTag("FirstPersonCamera");
+        secondPersonCamera = GameObject.FindGameObjectWithTag("SecondCameraPerson");
         cameraAnchor = GameObject.FindGameObjectWithTag("FirstPersonCameraAnchor");
 
+        startCrossingValue = firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+
         StartCoroutine(ChangeCameraMode());
+    }
+
+    private void Crossing()
+    {
+        if(playerInputActions.Player.Crossing.ReadValue<float>() != 0)
+        {
+            firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView = _crossingValue;
+            secondPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView = _crossingValue;
+        }
+        else
+        {
+            firstPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView = startCrossingValue;
+            secondPersonCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView = startCrossingValue;
+        }
     }
 
     public void Jump(InputAction.CallbackContext Context)
@@ -128,6 +153,7 @@ public class PlayerController : MonoBehaviour
         Move(upDown, rightLeft);
         SetRotation();
         SetCameraRotation();
-        if(!sprintState) StartCoroutine(Sprint(upDown, rightLeft));
+        Crossing();
+        if (!sprintState) StartCoroutine(Sprint(upDown, rightLeft));
     }
 }

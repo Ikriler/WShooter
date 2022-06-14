@@ -89,6 +89,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crossing"",
+                    ""type"": ""Button"",
+                    ""id"": ""e5fa5ef5-d4e0-4519-8f2c-d2ddb89fe75c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a568df3e-e959-40da-8e7f-0f705ea66a7c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crossing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +247,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_CameraSwitch = m_Player.FindAction("CameraSwitch", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Crossing = m_Player.FindAction("Crossing", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CameraSwitch;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Crossing;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -304,6 +326,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @CameraSwitch => m_Wrapper.m_Player_CameraSwitch;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Crossing => m_Wrapper.m_Player_Crossing;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -334,6 +357,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Crossing.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrossing;
+                @Crossing.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrossing;
+                @Crossing.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrossing;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -359,6 +385,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Crossing.started += instance.OnCrossing;
+                @Crossing.performed += instance.OnCrossing;
+                @Crossing.canceled += instance.OnCrossing;
             }
         }
     }
@@ -372,5 +401,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnCameraSwitch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnCrossing(InputAction.CallbackContext context);
     }
 }
